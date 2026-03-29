@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Strength Analyser & Breach Checker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Password Strength Analyser & Breach Checker</h1>
+        <p>Check your password strength, detect breaches, and generate secure passwords — all privately in your browser.</p>
+    </header>
+
+    <main>
+
+        <!-- MODULE 1: Password Strength Checker -->
+        <section id="strength-checker">
+            <h2>Check Password Strength</h2>
+            <input type="password" id="password-input" placeholder="Enter your password here" />
+            <div id="strength-bar"></div>
+            <div id="strength-score"></div>
+            <div id="strength-feedback"></div>
+        </section>
+
+        <!-- MODULE 2: Breach Checker -->
+        <section id="breach-checker">
+            <h2>Check for Known Breaches</h2>
+            <button id="breach-btn">Check Breach Status</button>
+            <div id="breach-result"></div>
+        </section>
+
+        <!-- MODULE 3: Password Generator -->
+        <section id="password-generator">
+            <h2>Generate a Secure Password</h2>
+            <button id="generate-btn">Generate Password</button>
+            <div id="generated-password"></div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Your password is never sent to any server. All checks happen privately in your browser.</p>
+    </footer>
+
+    <script src="app.js"></script>
+    <script src="crypto.js"></script>
+
+</body>
+</html>
