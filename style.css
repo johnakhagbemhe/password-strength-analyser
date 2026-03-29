@@ -1,0 +1,133 @@
+/* ── RESET & BASE ── */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    min-height: 100vh;
+}
+
+/* ── HEADER ── */
+header {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #4fc3f7;
+}
+
+header p {
+    font-size: 1rem;
+    color: #b0bec5;
+}
+
+/* ── MAIN LAYOUT ── */
+main {
+    max-width: 750px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* ── SECTIONS ── */
+section {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+section h2 {
+    font-size: 1.2rem;
+    color: #1a1a2e;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #4fc3f7;
+}
+
+/* ── INPUT ── */
+input[type="password"] {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+input[type="password"]:focus {
+    border-color: #4fc3f7;
+}
+
+/* ── STRENGTH BAR ── */
+#strength-bar {
+    height: 10px;
+    border-radius: 5px;
+    background: #e0e0e0;
+    margin-top: 14px;
+    transition: width 0.4s, background-color 0.4s;
+    width: 0%;
+}
+
+#strength-score {
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 1rem;
+    color: #555;
+}
+
+#strength-feedback {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #777;
+    line-height: 1.6;
+}
+
+/* ── BUTTONS ── */
+button {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    width: 100%;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+/* ── BREACH RESULT ── */
+#breach-result {
+    margin-top: 16px;
+    font-size: 0.95rem;
+    font-weight: bold;
+}
+
+.breach-safe {
+    color: #2e7d32;
+}
+
+.breach-found {
+    color: #c62828;
+}
+
+/* ── GENERATED PASSWORD ── */
+#generated-password {
+    ma
