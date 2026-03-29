@@ -162,3 +162,17 @@ async function checkBreach(password) {
 
     return 0; // Not found in any breach
 }
+// ── DARK MODE TOGGLE ─────────────────────────────────────────────────────────
+
+const darkModeBtn = document.getElementById('dark-mode-btn');
+
+darkModeBtn.addEventListener('click', function () {
+    document.body.classList.toggle('dark-mode');
+
+    // Change button text depending on mode
+    if (document.body.classList.contains('dark-mode')) {
+        darkModeBtn.textContent = '☀️ Light Mode';
+    } else {
+        darkModeBtn.textContent = '🌙 Dark Mode';
+    }
+});
