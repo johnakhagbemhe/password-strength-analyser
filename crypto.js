@@ -54,3 +54,29 @@ function shuffleArray(array) {
     }
     return array;
 }
+// ── COPY TO CLIPBOARD ────────────────────────────────────────────────────────
+
+const copyBtn = document.getElementById('copy-btn');
+const copyConfirmation = document.getElementById('copy-confirmation');
+
+// Show copy button when a password is generated
+generateBtn.addEventListener('click', function () {
+    copyBtn.style.display = 'block';
+    copyConfirmation.textContent = '';
+});
+
+// Copy password to clipboard when copy button is clicked
+copyBtn.addEventListener('click', async function () {
+    const password = generatedPassword.textContent;
+
+    if (password.length === 0) {
+        return;
+    }
+
+    try {
+        await navigator.clipboard.writeText(password);
+        copyConfirmation.textContent = '✅ Password copied to clipboard!';
+    } catch (error) {
+        copyConfirmation.textContent = 'Unable to copy. Please copy manually.';
+    }
+});
