@@ -98,3 +98,67 @@ function updateStrengthUI(result) {
             .join('');
     }
 }
+// ── BREACH CHECKER ───────────────────────────────────────────────────────────
+
+const breachBtn = document.getElementById('breach-btn');
+const breachResult = document.getElementById('breach-result');
+
+breachBtn.addEventListener('click', async function () {
+    const password = passwordInput.value;
+
+    // Check password has been entered
+    if (password.length === 0) {
+        breachResult.textContent = 'Please enter a password first.';
+        breachResult.className = '';
+        return;
+    }
+
+    breachResult.textContent = 'Checking...';
+    breachResult.className = '';
+
+    try {
+        const pwned = await checkBreach(password);
+
+        if (pwned === 0) {
+            breachResult.textContent = '✅ Good news! This password was not found in any known data breaches.';
+            breachResult.className = 'breach-safe';
+        } else {
+            breachResult.textContent = `⚠️ Warning! This password has appeared in ${pwned.toLocaleString()} known data breaches. Do not use it.`;
+            breachResult.className = 'breach-found';
+        }
+    } catch (error) {
+        breachResult.textContent = 'Unable to check breaches right now. Please try again later.';
+        breachResult.className = '';
+    }
+});
+
+// ── K-ANONYMITY BREACH CHECK ─────────────────────────────────────────────────
+async function checkBreach(password) {
+    // Step 1: Hash the password using SHA-1
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hashBuffer = await crypto.subtle.digest('SHA-1', data);
+
+    // Step 2: Convert hash to hex string
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+
+    // Step 3: Split into prefix (first 5 chars) and suffix (rest)
+    const prefix = hashHex.substring(0, 5);
+    const suffix = hashHex.substring(5);
+
+    // Step 4: Send only the prefix to HIBP API
+    const response = await fetch(`https://api.pwnedpasswords.com/range/${prefix}`);
+    const text = await response.text();
+
+    // Step 5: Check if our suffix appears in the returned list
+    const lines = text.split('\n');
+    for (const line of lines) {
+        const [returnedSuffix, count] = line.split(':');
+        if (returnedSuffix.trim() === suffix) {
+            return parseInt(count.trim());
+        }
+    }
+
+    return 0; // Not found in any breach
+}
